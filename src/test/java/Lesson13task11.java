@@ -59,7 +59,6 @@ public class Lesson13task11 {
         driver.findElement(By.xpath("//*[@id=\"quantity_wanted_p\"]/a[2]/span")).click();
         driver.findElement(By.xpath("//*[@id=\"add_to_cart\"]/button")).click();
         Thread.sleep(5000);
-
         String getTotalProducts = driver.findElement(By.xpath("//*[@id=\"layer_cart\"]/div[1]/div[2]/div[1]/span")).getText().replace("$", "");
         double doubleTotalProducts = Double.parseDouble(getTotalProducts.trim());
 
@@ -102,9 +101,9 @@ public class Lesson13task11 {
         driver.findElement(By.xpath("//*[@id=\"quantity_wanted_p\"]/a[2]/span")).click();
         driver.findElement(By.xpath("//*[@id=\"add_to_cart\"]/button")).click();
         Thread.sleep(5000);
-
         String getFinalTotal = driver.findElement(By.xpath("//*[@id=\"layer_cart\"]/div[1]/div[2]/div[3]/span")).getText().replace("$", "");
         double doubleFinalTotal = Double.parseDouble((getFinalTotal.trim()));
+
         Assert.assertEquals(56, doubleFinalTotal, 0.0);
         driver.close();
     }
@@ -128,8 +127,8 @@ public class Lesson13task11 {
         Thread.sleep(1000);
         driver.findElement(By.xpath("//*[@id=\"2_7_0_0\"]/i")).click();
         Thread.sleep(1000);
+
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"center_column\"]/p")).isDisplayed());
         driver.close();
-
     }
 }
