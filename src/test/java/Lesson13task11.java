@@ -20,6 +20,21 @@ import java.util.concurrent.TimeUnit;
 public class Lesson13task11 {
     private WebDriver driver = new ChromeDriver();
 
+    private void goUntillPopup() throws InterruptedException {
+        runDriver();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.findElement(By.xpath("//*[@id=\"search_query_top\"]")).sendKeys("Blouse");
+        driver.findElement(By.xpath("//*[@id=\"searchbox\"]/button")).click();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.findElement(By.xpath("//*[@id=\"list\"]/a/i")).click();
+        driver.findElement(By.xpath("//*[@id=\"center_column\"]/ul/li/div/div/div[3]/div/div[2]/a[2]/span")).click();
+        String getPricebyOne = (driver.findElement(By.xpath("//*[@id=\"our_price_display\"]")).getText()).replace("$", "");
+        double onePrice = Double.parseDouble(getPricebyOne.trim());
+        driver.findElement(By.xpath("//*[@id=\"quantity_wanted_p\"]/a[2]/span")).click();
+        driver.findElement(By.xpath("//*[@id=\"add_to_cart\"]/button")).click();
+        Thread.sleep(3000);
+    }
+
     private void runDriver() {
         System.setProperty("webdriver.chrome.driver", "/home/artem/IdeaProjects/chromedriver");
         driver.manage().window().maximize();
@@ -28,18 +43,8 @@ public class Lesson13task11 {
 
     @Test
     public void buyCheckQuantity() throws InterruptedException {
-        runDriver();
-        driver.findElement(By.xpath("//*[@id=\"search_query_top\"]")).sendKeys("Blouse");
-        driver.findElement(By.xpath("//*[@id=\"searchbox\"]/button")).click();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        driver.findElement(By.xpath("//*[@id=\"list\"]/a/i")).click();
-        driver.findElement(By.xpath("//*[@id=\"center_column\"]/ul/li/div/div/div[3]/div/div[2]/a[2]/span")).click();
-        String getPricebyOne = (driver.findElement(By.xpath("//*[@id=\"our_price_display\"]")).getText()).replace("$", "");
-        double onePrice = Double.parseDouble(getPricebyOne.trim());
-        driver.findElement(By.xpath("//*[@id=\"quantity_wanted_p\"]/a[2]/span")).click();
-        driver.findElement(By.xpath("//*[@id=\"add_to_cart\"]/button")).click();
-        Thread.sleep(5000);
 
+        goUntillPopup();
         String getQuantity = driver.findElement(By.xpath("//*[@id=\"layer_cart_product_quantity\"]")).getText();
         double doubleQuantity = Double.parseDouble(getQuantity.trim());
         Assert.assertEquals(2, doubleQuantity, 0.0);
@@ -48,17 +53,7 @@ public class Lesson13task11 {
 
     @Test
     public void checkTotalProducts() throws InterruptedException {
-        runDriver();
-        driver.findElement(By.xpath("//*[@id=\"search_query_top\"]")).sendKeys("Blouse");
-        driver.findElement(By.xpath("//*[@id=\"searchbox\"]/button")).click();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        driver.findElement(By.xpath("//*[@id=\"list\"]/a/i")).click();
-        driver.findElement(By.xpath("//*[@id=\"center_column\"]/ul/li/div/div/div[3]/div/div[2]/a[2]/span")).click();
-        String getPricebyOne = (driver.findElement(By.xpath("//*[@id=\"our_price_display\"]")).getText()).replace("$", "");
-        double onePrice = Double.parseDouble(getPricebyOne.trim());
-        driver.findElement(By.xpath("//*[@id=\"quantity_wanted_p\"]/a[2]/span")).click();
-        driver.findElement(By.xpath("//*[@id=\"add_to_cart\"]/button")).click();
-        Thread.sleep(5000);
+        goUntillPopup();
         String getTotalProducts = driver.findElement(By.xpath("//*[@id=\"layer_cart\"]/div[1]/div[2]/div[1]/span")).getText().replace("$", "");
         double doubleTotalProducts = Double.parseDouble(getTotalProducts.trim());
 
@@ -69,17 +64,7 @@ public class Lesson13task11 {
 
     @Test
     public void checkShipping() throws InterruptedException {
-        runDriver();
-        driver.findElement(By.xpath("//*[@id=\"search_query_top\"]")).sendKeys("Blouse");
-        driver.findElement(By.xpath("//*[@id=\"searchbox\"]/button")).click();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        driver.findElement(By.xpath("//*[@id=\"list\"]/a/i")).click();
-        driver.findElement(By.xpath("//*[@id=\"center_column\"]/ul/li/div/div/div[3]/div/div[2]/a[2]/span")).click();
-        String getPricebyOne = (driver.findElement(By.xpath("//*[@id=\"our_price_display\"]")).getText()).replace("$", "");
-        double onePrice = Double.parseDouble(getPricebyOne.trim());
-        driver.findElement(By.xpath("//*[@id=\"quantity_wanted_p\"]/a[2]/span")).click();
-        driver.findElement(By.xpath("//*[@id=\"add_to_cart\"]/button")).click();
-        Thread.sleep(5000);
+        goUntillPopup();
         String getTotalShipping = driver.findElement(By.xpath("//*[@id=\"layer_cart\"]/div[1]/div[2]/div[2]/span")).getText().replace("$", "");
         double doubleTotalShipping = Double.parseDouble((getTotalShipping.trim()));
 
@@ -90,17 +75,7 @@ public class Lesson13task11 {
 
     @Test
     public void finalTotal() throws InterruptedException {
-        runDriver();
-        driver.findElement(By.xpath("//*[@id=\"search_query_top\"]")).sendKeys("Blouse");
-        driver.findElement(By.xpath("//*[@id=\"searchbox\"]/button")).click();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        driver.findElement(By.xpath("//*[@id=\"list\"]/a/i")).click();
-        driver.findElement(By.xpath("//*[@id=\"center_column\"]/ul/li/div/div/div[3]/div/div[2]/a[2]/span")).click();
-        String getPricebyOne = (driver.findElement(By.xpath("//*[@id=\"our_price_display\"]")).getText()).replace("$", "");
-        double onePrice = Double.parseDouble(getPricebyOne.trim());
-        driver.findElement(By.xpath("//*[@id=\"quantity_wanted_p\"]/a[2]/span")).click();
-        driver.findElement(By.xpath("//*[@id=\"add_to_cart\"]/button")).click();
-        Thread.sleep(5000);
+        goUntillPopup();
         String getFinalTotal = driver.findElement(By.xpath("//*[@id=\"layer_cart\"]/div[1]/div[2]/div[3]/span")).getText().replace("$", "");
         double doubleFinalTotal = Double.parseDouble((getFinalTotal.trim()));
 
