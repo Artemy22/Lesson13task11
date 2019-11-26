@@ -7,9 +7,6 @@
                 <include name="highPriority"/>
             </run>
         </groups>
-<!--        <classes>-->
-<!--            <class name="example1.Test1"/>-->
-<!--        </classes>-->
     </test>
 
 </suite>

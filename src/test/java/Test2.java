@@ -16,6 +16,7 @@ WebDriver.
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -36,7 +37,7 @@ public class Test2 {
 
     @Test(groups = {"highPriority"})
     public void title1() {
-        System.out.println("Test 1");
+        System.out.println("Test 2.1 is running");
     }
 
     @Test(groups = {"highPriority"})
@@ -47,12 +48,13 @@ public class Test2 {
 
     @Test(groups = {"lowPriority"})
     public void somethingNew() {
-        System.out.println("Test 1");
+        System.out.println("Test 2.2 with low priority");
     }
 
-//    @AfterClass
-//    public void closeDr() {
-//        driver.close();
-//    }
+    @AfterClass
+    public void closeDr() {
+        driver.close();
+        System.out.println("Driver is closed");
+    }
 
 }

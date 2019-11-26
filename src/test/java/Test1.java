@@ -36,23 +36,30 @@ public class Test1 {
     }
 
     @Test(groups = {"highPriority"})
-    public void title1() {
-        System.out.println("Test 1");
+    public void title1() throws InterruptedException {
+        System.out.println("Test 1 is running");
+        driver.findElement(By.xpath(" //*[@id=\"header\"]/div[2]/div/div/nav/div[1]")).click();
+        Thread.sleep(3000);
+
     }
 
     @Test(groups = {"highPriority"})
     public void setEmail() {
-        driver.findElement(By.xpath("//*[@id=\"email\"]")).sendKeys("test" + generatedNumbs() + "@qa.qa");
+        String email = "test" + generatedNumbs() + "@qa.qa";
+        driver.findElement(By.xpath("//*[@id=\"email\"]")).sendKeys(email);
+        System.out.println("Test1 email = " + email);
     }
 
     @Test(groups = {"highPriority"})
     public void setPassword() {
-        driver.findElement(By.xpath("//*[@id=\"passwd\"]")).sendKeys("test" + generatedNumbs());
+        String password = "test" + generatedNumbs();
+        driver.findElement(By.xpath("//*[@id=\"passwd\"]")).sendKeys(password);
+        System.out.println("Test1 password = " + password);
     }
 
-//    @AfterClass
-//    public void closeDr() {
-//        driver.close();
-//    }
-
+    @AfterClass
+    public void closeDr() {
+        driver.close();
+        System.out.println("Test1 Driver is closed");
+    }
 }
